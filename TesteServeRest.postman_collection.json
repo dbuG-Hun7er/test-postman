@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "47560181-adc4-41ca-b863-e37dfb09ac0a",
+		"name": "TesteServeRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42345747"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Delete produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Validar mensagem\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Nenhum registro excluído\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Local}}produtos/rYcXtceuNzRrhB6n",
+							"host": [
+								"{{Local}}produtos"
+							],
+							"path": [
+								"rYcXtceuNzRrhB6n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code  200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"validar alteraçoes com sucesso\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Iphone XR-v3.1\",\r\n  \"preco\": 2700,\r\n  \"descricao\": \"Telefone celular\",\r\n  \"quantidade\": 381\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Local}}produtos/5Oyff2L0lfGCDMDD",
+							"host": [
+								"{{Local}}produtos"
+							],
+							"path": [
+								"5Oyff2L0lfGCDMDD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar produto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Validade menssagem\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"fone Iphone\",\r\n  \"preco\": 47,\r\n  \"descricao\": \"Celular\",\r\n  \"quantidade\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validar produto da lista\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Samsung 60 polegadas\");\r",
+									"pm.test(\"Status code 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Lucas@qa.com.br\",\r\n  \"password\": \"teste123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listar usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Lucas F de Lima\",\r\n  \"email\": \"Lucas@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resposta = pm.response.json();\r",
+							"pm.globals.set(\"token\", resposta.authorization);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikx1Y2FzQHFhLmNvbS5iciIsInBhc3N3b3JkIjoidGVzdGUxMjMiLCJpYXQiOjE3NDAwNTkzMDQsImV4cCI6MTc0MDA1OTkwNH0.CzCatX7DyKLBin-2Y0Kdph15UTyCFfJlNsyc5pBkh0E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Lucas@qa.com.br\",\r\n  \"password\": \"teste123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Validar E-mail ja cadastrado\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Lucas F de Lima\",\r\n  \"email\": \"Lucas@qa.com.br\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
